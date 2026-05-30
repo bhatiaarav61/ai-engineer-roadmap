@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Engineer Roadmap – 1 Year</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0f0f1a; color: #e0e0f0; min-height: 100vh; padding: 24px 16px; }
+  h1 { text-align: center; font-size: 2rem; background: linear-gradient(90deg, #7c3aed, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 28px; font-size: 0.95rem; }
+
+  .phase-nav { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+  .phase-btn { padding: 8px 18px; border-radius: 999px; border: 2px solid transparent; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; background: #1a1a2e; color: #aaa; }
+  .phase-btn:hover { color: #fff; }
+  .phase-btn.active { color: #fff; }
+  .phase-btn[data-phase="1"] { border-color: #7c3aed; }
+  .phase-btn[data-phase="1"].active { background: #7c3aed; }
+  .phase-btn[data-phase="2"] { border-color: #0891b2; }
+  .phase-btn[data-phase="2"].active { background: #0891b2; }
+  .phase-btn[data-phase="3"] { border-color: #059669; }
+  .phase-btn[data-phase="3"].active { background: #059669; }
+  .phase-btn[data-phase="4"] { border-color: #d97706; }
+  .phase-btn[data-phase="4"].active { background: #d97706; }
+  .phase-btn[data-phase="all"] { border-color: #e11d48; }
+  .phase-btn[data-phase="all"].active { background: #e11d48; }
+
+  .timeline { max-width: 860px; margin: 0 auto; position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 28px; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #7c3aed, #0891b2, #059669, #d97706); border-radius: 4px; }
+
+  .phase-block { margin-bottom: 36px; }
+  .phase-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-left: 0; }
+  .phase-dot { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; z-index: 1; position: relative; border: 3px solid #0f0f1a; }
+  .phase-title { font-size: 1.2rem; font-weight: 700; }
+  .phase-months { font-size: 0.8rem; color: #888; margin-top: 2px; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; padding-left: 70px; }
+  .card { background: #1a1a2e; border-radius: 12px; padding: 16px; border-left: 4px solid; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .card h3 { font-size: 0.95rem; margin-bottom: 8px; }
+  .card ul { list-style: none; }
+  .card ul li { font-size: 0.8rem; color: #aaa; padding: 3px 0; display: flex; gap: 6px; align-items: flex-start; }
+  .card ul li::before { content: '→'; color: #555; flex-shrink: 0; }
+  .tag { display: inline-block; font-size: 0.68rem; padding: 2px 8px; border-radius: 999px; margin-top: 10px; font-weight: 600; }
+
+  .p1 { background: #2d1b69; border-color: #7c3aed; }
+  .p1 .tag { background: #7c3aed22; color: #a78bfa; }
+  .p2 { background: #0c2340; border-color: #0891b2; }
+  .p2 .tag { background: #0891b222; color: #67e8f9; }
+  .p3 { background: #062820; border-color: #059669; }
+  .p3 .tag { background: #05966922; color: #6ee7b7; }
+  .p4 { background: #2d1a00; border-color: #d97706; }
+  .p4 .tag { background: #d9770622; color: #fcd34d; }
+
+  .dot-p1 { background: #7c3aed; }
+  .dot-p2 { background: #0891b2; }
+  .dot-p3 { background: #059669; }
+  .dot-p4 { background: #d97706; }
+
+  .progress-bar-wrap { max-width: 860px; margin: 0 auto 28px; padding-left: 70px; }
+  .progress-label { font-size: 0.78rem; color: #888; margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .progress-track { background: #1a1a2e; border-radius: 999px; height: 8px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #7c3aed, #0891b2, #059669, #d97706); transition: width 0.5s; }
+
+  .checklist-hint { text-align: center; font-size: 0.78rem; color: #666; margin-top: -18px; margin-bottom: 20px; }
+
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<h1>🚀 AI Engineer Roadmap</h1>
+<p class="subtitle">1 Year · Python → TypeScript → SQL → C++ · Click cards to track progress</p>
+
+<div class="phase-nav">
+  <button class="phase-btn active" data-phase="all">All Phases</button>
+  <button class="phase-btn" data-phase="1">Phase 1 · Foundation</button>
+  <button class="phase-btn" data-phase="2">Phase 2 · ML Core</button>
+  <button class="phase-btn" data-phase="3">Phase 3 · AI Engineering</button>
+  <button class="phase-btn" data-phase="4">Phase 4 · Specialize</button>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-label"><span>Overall Progress</span><span id="prog-text">0 / 0 topics</span></div>
+  <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+</div>
+<p class="checklist-hint">✅ Click any card to mark it complete</p>
+
+<div class="timeline" id="timeline">
+
+  <!-- PHASE 1 -->
+  <div class="phase-block" data-phase-block="1">
+    <div class="phase-header">
+      <div class="phase-dot dot-p1">🐍</div>
+      <div>
+        <div class="phase-title">Phase 1 — Foundation</div>
+        <div class="phase-months">Months 1 – 3 · Python + SQL + Math</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card p1" onclick="toggleCard(this)">
+        <h3>Python Basics</h3>
+        <ul>
+          <li>Variables, data types, loops</li>
+          <li>Functions & scope</li>
+          <li>Lists, dicts, sets, tuples</li>
+          <li>File I/O & exceptions</li>
+        </ul>
+        <span class="tag">Month 1</span>
+      </div>
+
+      <div class="card p1" onclick="toggleCard(this)">
+        <h3>Python Intermediate</h3>
+        <ul>
+          <li>OOP – classes & inheritance</li>
+          <li>List comprehensions</li>
+          <li>Decorators & generators</li>
+          <li>Virtual envs & pip</li>
+        </ul>
+        <span class="tag">Month 1–2</span>
+      </div>
+
+      <div class="card p1" onclick="toggleCard(this)">
+        <h3>NumPy & Pandas</h3>
+        <ul>
+          <li>Arrays, broadcasting</li>
+          <li>DataFrames, groupby</li>
+          <li>Data cleaning & merging</li>
+          <li>Reading CSV / JSON</li>
+        </ul>
+        <span class="tag">Month 2</span>
+      </div>
+
+      <div class="card p1" onclick="toggleCard(this)">
+        <h3>SQL for AI</h3>
+        <ul>
+          <li>SELECT, WHERE, JOIN, GROUP BY</li>
+          <li>Subqueries & CTEs</li>
+          <li>Window functions</li>
+          <li>SQLite + PostgreSQL basics</li>
+        </ul>
+        <span class="tag">Month 2</span>
+      </div>
+
+      <div class="card p1" onclick="toggleCard(this)">
+        <h3>Math for ML</h3>
+        <ul>
+          <li>Linear algebra (matrices, dot products)</li>
+          <li>Calculus (derivatives, chain rule)</li>
+          <li>Probability & statistics</li>
+          <li>Khan Academy + 3Blue1Brown</li>
+        </ul>
+        <span class="tag">Month 3</span>
+      </div>
+
+      <div class="card p1" onclick="toggleCard(this)">
+        <h3>Data Visualization</h3>
+        <ul>
+          <li>Matplotlib & Seaborn</li>
+          <li>Plotly for interactive charts</li>
+          <li>Exploratory Data Analysis (EDA)</li>
+          <li>Jupyter Notebooks workflow</li>
+        </ul>
+        <span class="tag">Month 3</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase-block" data-phase-block="2">
+    <div class="phase-header">
+      <div class="phase-dot dot-p2">🤖</div>
+      <div>
+        <div class="phase-title">Phase 2 — ML Core</div>
+        <div class="phase-months">Months 4 – 6 · Scikit-learn, PyTorch, Deep Learning</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card p2" onclick="toggleCard(this)">
+        <h3>Classic ML</h3>
+        <ul>
+          <li>Linear & logistic regression</li>
+          <li>Decision trees, Random Forest</li>
+          <li>SVM, KNN, clustering</li>
+          <li>scikit-learn pipelines</li>
+        </ul>
+        <span class="tag">Month 4</span>
+      </div>
+
+      <div class="card p2" onclick="toggleCard(this)">
+        <h3>Model Evaluation</h3>
+        <ul>
+          <li>Train/val/test splits</li>
+          <li>Cross-validation</li>
+          <li>Precision, recall, F1, AUC</li>
+          <li>Overfitting & regularization</li>
+        </ul>
+        <span class="tag">Month 4</span>
+      </div>
+
+      <div class="card p2" onclick="toggleCard(this)">
+        <h3>Deep Learning Basics</h3>
+        <ul>
+          <li>Neural networks & backprop</li>
+          <li>Activation functions</li>
+          <li>PyTorch tensors & autograd</li>
+          <li>Build your first NN</li>
+        </ul>
+        <span class="tag">Month 5</span>
+      </div>
+
+      <div class="card p2" onclick="toggleCard(this)">
+        <h3>CNNs & Computer Vision</h3>
+        <ul>
+          <li>Convolutions, pooling, padding</li>
+          <li>ResNet, VGG architectures</li>
+          <li>Image classification project</li>
+          <li>Transfer learning</li>
+        </ul>
+        <span class="tag">Month 5</span>
+      </div>
+
+      <div class="card p2" onclick="toggleCard(this)">
+        <h3>NLP & Transformers</h3>
+        <ul>
+          <li>Tokenization, embeddings</li>
+          <li>Attention mechanism</li>
+          <li>Hugging Face Transformers</li>
+          <li>Fine-tune BERT / DistilBERT</li>
+        </ul>
+        <span class="tag">Month 6</span>
+      </div>
+
+      <div class="card p2" onclick="toggleCard(this)">
+        <h3>MLOps Basics</h3>
+        <ul>
+          <li>Experiment tracking (MLflow)</li>
+          <li>Model versioning</li>
+          <li>Docker for ML environments</li>
+          <li>Git + GitHub for projects</li>
+        </ul>
+        <span class="tag">Month 6</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase-block" data-phase-block="3">
+    <div class="phase-header">
+      <div class="phase-dot dot-p3">⚡</div>
+      <div>
+        <div class="phase-title">Phase 3 — AI Engineering</div>
+        <div class="phase-months">Months 7 – 9 · LLMs, APIs, TypeScript, Products</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card p3" onclick="toggleCard(this)">
+        <h3>LLM Engineering</h3>
+        <ul>
+          <li>Prompt engineering & few-shot</li>
+          <li>OpenAI / Anthropic APIs</li>
+          <li>RAG (Retrieval Augmented Gen)</li>
+          <li>Vector databases (Pinecone, Chroma)</li>
+        </ul>
+        <span class="tag">Month 7</span>
+      </div>
+
+      <div class="card p3" onclick="toggleCard(this)">
+        <h3>LangChain & Agents</h3>
+        <ul>
+          <li>Chains, memory, tools</li>
+          <li>Building AI agents</li>
+          <li>Tool calling & function use</li>
+          <li>Multi-agent workflows</li>
+        </ul>
+        <span class="tag">Month 7–8</span>
+      </div>
+
+      <div class="card p3" onclick="toggleCard(this)">
+        <h3>TypeScript Fundamentals</h3>
+        <ul>
+          <li>Types, interfaces, generics</li>
+          <li>Async/await & Promises</li>
+          <li>Node.js basics</li>
+          <li>npm / package ecosystem</li>
+        </ul>
+        <span class="tag">Month 8</span>
+      </div>
+
+      <div class="card p3" onclick="toggleCard(this)">
+        <h3>Building AI Products</h3>
+        <ul>
+          <li>Next.js + AI SDK (Vercel)</li>
+          <li>Streaming responses in UI</li>
+          <li>Auth, rate limits, cost control</li>
+          <li>Deploy on Vercel / Railway</li>
+        </ul>
+        <span class="tag">Month 8–9</span>
+      </div>
+
+      <div class="card p3" onclick="toggleCard(this)">
+        <h3>FastAPI for ML Serving</h3>
+        <ul>
+          <li>REST API design</li>
+          <li>Model inference endpoints</li>
+          <li>Async endpoints & middleware</li>
+          <li>Dockerize & deploy</li>
+        </ul>
+        <span class="tag">Month 9</span>
+      </div>
+
+      <div class="card p3" onclick="toggleCard(this)">
+        <h3>Cloud & Infra</h3>
+        <ul>
+          <li>AWS / GCP basics for ML</li>
+          <li>Managed model endpoints</li>
+          <li>CI/CD for AI apps</li>
+          <li>Monitoring & logging</li>
+        </ul>
+        <span class="tag">Month 9</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase-block" data-phase-block="4">
+    <div class="phase-header">
+      <div class="phase-dot dot-p4">🏆</div>
+      <div>
+        <div class="phase-title">Phase 4 — Specialize & Ship</div>
+        <div class="phase-months">Months 10 – 12 · C++, Fine-tuning, Portfolio</div>
+      </div>
+    </div>
+    <div class="cards">
+
+      <div class="card p4" onclick="toggleCard(this)">
+        <h3>C++ for AI (Intro)</h3>
+        <ul>
+          <li>Syntax, pointers, memory</li>
+          <li>Compile & link basics</li>
+          <li>Read llama.cpp source</li>
+          <li>Basic CUDA concepts</li>
+        </ul>
+        <span class="tag">Month 10</span>
+      </div>
+
+      <div class="card p4" onclick="toggleCard(this)">
+        <h3>Fine-tuning LLMs</h3>
+        <ul>
+          <li>LoRA & QLoRA techniques</li>
+          <li>Hugging Face Trainer API</li>
+          <li>Dataset preparation</li>
+          <li>Evaluate fine-tuned models</li>
+        </ul>
+        <span class="tag">Month 10–11</span>
+      </div>
+
+      <div class="card p4" onclick="toggleCard(this)">
+        <h3>Capstone Project 1</h3>
+        <ul>
+          <li>End-to-end AI app (Python + TS)</li>
+          <li>RAG chatbot on custom data</li>
+          <li>Full deployment pipeline</li>
+          <li>Publish on GitHub</li>
+        </ul>
+        <span class="tag">Month 11</span>
+      </div>
+
+      <div class="card p4" onclick="toggleCard(this)">
+        <h3>Capstone Project 2</h3>
+        <ul>
+          <li>Fine-tuned model product</li>
+          <li>Or: computer vision API</li>
+          <li>Or: multimodal AI tool</li>
+          <li>Write a blog post about it</li>
+        </ul>
+        <span class="tag">Month 11–12</span>
+      </div>
+
+      <div class="card p4" onclick="toggleCard(this)">
+        <h3>Portfolio & Job Prep</h3>
+        <ul>
+          <li>GitHub profile polish</li>
+          <li>LinkedIn + resume update</li>
+          <li>Kaggle competitions (top 30%)</li>
+          <li>Technical interview prep</li>
+        </ul>
+        <span class="tag">Month 12</span>
+      </div>
+
+      <div class="card p4" onclick="toggleCard(this)">
+        <h3>Stay Current</h3>
+        <ul>
+          <li>Read Arxiv papers weekly</li>
+          <li>Follow AI newsletters</li>
+          <li>Build in public on X/LinkedIn</li>
+          <li>Contribute to open source</li>
+        </ul>
+        <span class="tag">Month 12+</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const STORAGE_KEY = 'ai_roadmap_done';
+  let done = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  const cards = document.querySelectorAll('.card');
+  const total = cards.length;
+
+  function updateProgress() {
+    const count = document.querySelectorAll('.card.done').length;
+    document.getElementById('prog-text').textContent = `${count} / ${total} topics`;
+    document.getElementById('prog-fill').style.width = `${(count/total)*100}%`;
+  }
+
+  function toggleCard(el) {
+    el.classList.toggle('done');
+    if (el.classList.contains('done')) {
+      el.style.opacity = '0.5';
+      el.style.textDecoration = 'line-through';
+    } else {
+      el.style.opacity = '1';
+      el.style.textDecoration = 'none';
+    }
+    // Save
+    const doneList = [...document.querySelectorAll('.card.done')].map(c => c.querySelector('h3').textContent);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(doneList));
+    updateProgress();
+  }
+
+  // Restore state
+  cards.forEach(card => {
+    const title = card.querySelector('h3').textContent;
+    if (done.includes(title)) {
+      card.classList.add('done');
+      card.style.opacity = '0.5';
+      card.style.textDecoration = 'line-through';
+    }
+  });
+  updateProgress();
+
+  // Phase filter
+  document.querySelectorAll('.phase-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const phase = btn.dataset.phase;
+      document.querySelectorAll('.phase-block').forEach(block => {
+        if (phase === 'all' || block.dataset.phaseBlock === phase) {
+          block.classList.remove('hidden');
+        } else {
+          block.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
